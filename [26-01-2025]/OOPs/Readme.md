@@ -1,6 +1,6 @@
-#Problem Statement
+# Problem Statement
 Modify the Bird class to include a method named sing that prints I am singing.
-##Platfrom Used
+## Platfrom Used
 HackerRank
-##Approach
+## Approach
 Using Inheritence
