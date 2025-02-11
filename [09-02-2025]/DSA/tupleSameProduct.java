@@ -1,19 +1,25 @@
-import java.util.HashMap;
-import java.util.Map;
-
 class Solution {
     public int tupleSameProduct(int[] nums) {
-        int ans = 0;
-        Map<Integer, Integer> count = new HashMap<>();
+        HashMap<Integer, Integer> productCount = new HashMap<>();
+        int n = nums.length;
+        int result = 0;
 
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = 0; j < i; j++) {
+        // Iterate through all unique pairs
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
                 int product = nums[i] * nums[j];
-                ans += count.getOrDefault(product, 0) * 8;
-                count.put(product, count.getOrDefault(product, 0) + 1);
+                
+                // If this product already exists, count valid tuples
+                if (productCount.containsKey(product)) {
+                    int freq = productCount.get(product);
+                    result += 8 * freq; // Each valid pair contributes 8 permutations
+                }
+
+                // Store/update the product frequency
+                productCount.put(product, productCount.getOrDefault(product, 0) + 1);
             }
         }
 
-        return ans;
+        return result;
     }
 }
